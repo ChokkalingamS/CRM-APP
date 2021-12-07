@@ -229,8 +229,8 @@ return <div>Loading...</div>
     const token=localStorage.getItem("token");
     // console.log(token);
     const [userdata,setUserdata]=useState([]);
-    const {history}=useContext(context)
-    let controller = new AbortController();
+    // const {history}=useContext(context)
+    // let controller = new AbortController();
 
    
         const getresponse=()=>{fetch(`${URL}/getuserdata`,
