@@ -11,7 +11,6 @@ import {
   Admindashboard,
   Managerdashboard,
   Employeedashboard,
-  Getusers
 } from "./Employee"
 
 export default  function App() {
@@ -81,8 +80,8 @@ function Usersignup()
       method: "POST",
       body: JSON.stringify(userdata),
       headers: { "Content-Type": "application/json" },
-    });
-    const data=await signupresponse.json()
+    }).then((x)=>x.json())
+    // const data=await signupresponse.json()
     // console.log(data);  
     return signupresponse.status
   };
@@ -117,9 +116,11 @@ function Userlogin()
       headers:{'Content-Type': 'application/json'},
     });
     const data=await loginresponse.json()
+    const {token}=data
     // console.log(data.token);
 
-    const storedata= await (loginresponse.status===200)&&localStorage.setItem("token",data.token)
+    const storedata= ()=> (loginresponse.status===200)&&localStorage.setItem("token",token)
+    storedata()
     return loginresponse.status
   };
   
@@ -147,7 +148,7 @@ function Forgotpassword()
       body:JSON.stringify(userdata),
       headers:{'Content-Type':'application/json'}
     })
-    const result=await forgotresponse.json();
+    // const result=await forgotresponse.json();
   //  const data= (result)?Token(result):null
   // console.log( forgotresponse.status);
   return  forgotresponse.status
@@ -189,10 +190,11 @@ function Updatepassword({id})
       method:"GET",
       headers:{'x-auth-token':id}
     })
-    const value= await tokenresponse.json()
+    // const value= await tokenresponse.json()
 
-     const result=(tokenresponse.status===200)?history.push(`/newpassword/${id}`) :null
-   }
+     const result=()=>(tokenresponse.status===200)?history.push(`/newpassword/${id}`) :null
+      result()
+    }
    
   
   Result(id)
@@ -215,8 +217,9 @@ function Newpassword()
       body  :JSON.stringify(userdata),
       headers:{"Content-Type":"application/json"}
     })
-    const result=await passwordchangeresponse.json();
-    const page=(passwordchangeresponse.status===200)?history.push('/final'):null
+    // const result=await passwordchangeresponse.json();
+    const page=()=>(passwordchangeresponse.status===200)?history.push('/final'):null
+      page()
   }
  
   
