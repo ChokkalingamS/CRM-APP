@@ -27,7 +27,8 @@ function Employeelogin() {
     });
     const data = await loginresponse.json();
     // console.log(data);
-    const storedata= await (loginresponse.status===200)&&localStorage.setItem("token",data.token)
+    const storedata= ()=> (loginresponse.status===200)&&localStorage.setItem("token",data.token)
+    storedata()
     return loginresponse.status;
   };
 
@@ -84,7 +85,7 @@ function Employeelogin() {
       body: JSON.stringify(userdata),
       headers: { 'Content-Type': 'application/json' },
     });
-    const data = await signupresponse.json();
+    // const data = await signupresponse.json();
     // console.log(data);
     return signupresponse.status;
   };
@@ -124,7 +125,7 @@ function Employeelogin() {
       body:JSON.stringify(userdata),
       headers:{'Content-Type':'application/json'}
     })
-    const result=await forgotresponse.json();
+    // const result=await forgotresponse.json();
  
 //   console.log( forgotresponse.status);
   return  forgotresponse.status
@@ -162,10 +163,11 @@ function Employeeupdatepassword({id})
       method:"GET",
       headers:{'x-auth-token':id}
     })
-    const value= await tokenresponse.json()
+    // const value= await tokenresponse.json()
 
-     const result=(tokenresponse.status===200)?history.push(`/employeenewpassword/${id}`) :null
-   }
+     const result=()=>(tokenresponse.status===200)?history.push(`/employeenewpassword/${id}`) :null
+      result()
+    }
    
   
   Result(id)
@@ -188,8 +190,9 @@ return <div>Loading...</div>
       body  :JSON.stringify(userdata),
       headers:{"Content-Type":"application/json"}
     })
-    const result=await passwordchangeresponse.json();
-    const page=(passwordchangeresponse.status===200)?history.push('/final'):null
+    // const result=await passwordchangeresponse.json();
+    const page=()=>(passwordchangeresponse.status===200)?history.push('/final'):null
+    page()
   }
  
   
