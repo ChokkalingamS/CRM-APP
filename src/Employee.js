@@ -240,12 +240,10 @@ return <div>Loading...</div>
         }).then(x=>x.json()).then(x=>setUserdata([x]))
     return;
 }
-  useEffect(()=>{
-      getresponse()
-      return controller.abort() },[token])
-    //  getresponse()
-// console.log(userdata);
-
+  // useEffect(()=>{ getresponse();
+  //    return()=> controller.abort()},[])
+ 
+  useEffect(getresponse,[token])
 
   return (<div><p>Admin dashboard</p>
   
